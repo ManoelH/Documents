@@ -4,9 +4,51 @@
 <meta charset="UTF-8"/>
 	<title>Register here your document</title>
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-	<h1> Welcome this is your register page!</h1>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Home</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="#">Register</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Documents</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<form id="main-form">
+		<div class="form-group">
+			<label for="description">Description</label>
+			<textarea class="form-control" id="description" required>
+			</textarea>
+		</div>
+		<div class="form-group">
+			<select class="custom-select">
+				<option selected>Status</option>
+				<option value="PE">Pendente</option>
+				<option value="PA">Pago</option>
+				<option value="VE">Vencido</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="value">Value</label>
+			<input class="form-control" type="text" id="value" required/>
+		</div>
+		<div class="form-group">
+			<label for="date">Final date</label>
+			<input class="form-control" type="text" id="date" required/>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 </body>
 </html>
