@@ -1,4 +1,4 @@
-package com.springproject.comercial;
+package com.springproject.documents;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

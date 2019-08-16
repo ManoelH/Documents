@@ -1,4 +1,4 @@
-package com.springproject.comercial.controller;
+package com.springproject.documents.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class DocumentController {
 
-	@RequestMapping(value = {"/documents/new"})
+	@RequestMapping("/documents/new")
 	public String newDocument() {
 		return "RegisterDocument";
 	}
 	
 }
+
