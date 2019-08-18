@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.springproject.documents.enums.StatusDocument;
 
 @Entity
@@ -25,6 +27,7 @@ public class Document {
 	@Enumerated(EnumType.STRING)
 	private StatusDocument status;
 	private BigDecimal value;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date dueDate;
 	

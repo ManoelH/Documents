@@ -2,9 +2,9 @@ package com.springproject.documents.enums;
 
 public enum StatusDocument {
 
-	PENDENTE("PE"),
-	PAGO("PA"),
-	VENCIDO("VE");
+	PENDING("PE"),
+	PAID("PA"),
+	OVERDUE("OD");
 	
 	private String status;
 	
