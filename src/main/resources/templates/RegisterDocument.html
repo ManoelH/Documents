@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"/>
 	<title>Register here your document</title>
@@ -30,17 +31,23 @@
 	</div>
 
 	<form id="main-form" method="post" action="/documents">
+		<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(message)}">
+		<span th:text="${message}"></span>
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+			
 		<div class="form-group">
 			<label for="description">Description</label>
 			<textarea class="form-control" id="description" name="description" required>
 			</textarea>
 		</div>
 		<div class="form-group">
-			<select class="custom-select" name="status">
-				<option selected>Status</option>
-				<option value="PENDING">Pending</option>
-				<option value="PAID">Paid</option>
-				<option value="OVERDUE">Overdue</option>
+			<label for="status">Status</label>
+			<select class="custom-select" id="status" name="status">
+				<option th:each="status : ${allStatus}" th:value="${status}" th:text="${status.status}"></option>
 			</select>
 		</div>
 		<div class="form-group">

@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.springproject.documents.enums.StatusDocument;
 import com.springproject.documents.model.Document;
 import com.springproject.documents.repository.Documents;
 
@@ -16,16 +18,21 @@ public class DocumentController {
 	private Documents documents;
 	
 	@RequestMapping("/new")
-	public String newDocument() {
-		return "RegisterDocument";
+	public ModelAndView newDocument() {
+		ModelAndView modelAndView = new ModelAndView("RegisterDocument");
+		modelAndView.addObject("allStatus", StatusDocument.values());
+		return modelAndView;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(Document document) {
+	public ModelAndView save(Document document) {
+		System.out.println(document.getStatus().getStatus());
 		documents.save(document);
-		System.out.println("Registed with sucess");
-		return "RegisterDocument";
+		ModelAndView modelAndView = new ModelAndView("RegisterDocument");
+		modelAndView.addObject("message", "Document saved with success!");
+		return modelAndView;
 	}
 	
+	//H2 URL jdbc:h2:mem:testdb
 }
 
