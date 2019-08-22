@@ -26,7 +26,6 @@ public class DocumentController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView save(Document document) {
-		System.out.println(document.getStatus().getStatus());
 		documents.save(document);
 		ModelAndView modelAndView = new ModelAndView("RegisterDocument");
 		modelAndView.addObject("message", "Document saved with success!");
