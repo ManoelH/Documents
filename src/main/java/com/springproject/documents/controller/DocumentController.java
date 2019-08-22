@@ -24,6 +24,12 @@ public class DocumentController {
 		return modelAndView;
 	}
 	
+	@RequestMapping("/list")
+	public ModelAndView ListDocuments() {
+		ModelAndView modelAndView = new ModelAndView("ListDocuments");
+		return modelAndView;
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView save(Document document) {
 		documents.save(document);

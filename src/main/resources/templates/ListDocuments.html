@@ -27,39 +27,32 @@
 	</nav>
 
 	<div align="center" class="div-title">
-		<h3>Registering document</h3>
+		<h3>Documents</h3>
 	</div>
 
-	<form id="main-form" method="post" action="/documents">
-		<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(message)}">
-		<span th:text="${message}"></span>
-			<button type="button" class="close" data-dismiss="alert"
-				aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-			
-		<div class="form-group">
-			<label for="description">Description</label>
-			<textarea class="form-control" id="description" name="description" required>
-			</textarea>
-		</div>
-		<div class="form-group">
-			<label for="status">Status</label>
-			<select class="custom-select" id="status" name="status">
-				<option th:each="status : ${allStatus}" th:value="${status}" th:text="${status.status}"></option>
-			</select>
-		</div>
-		<div class="form-group">
-			<label for="value">Value</label>
-			<input class="form-control" type="text" id="value" name="value" required/>
-		</div>
-		<div class="form-group">
-			<label for="date">Due date</label>
-			<input class="form-control" type="text" id="date" name="dueDate" required/>
-		</div>
-		<button type="submit" class="btn btn-primary">Submit</button>
+	<form id="main-form">
+		<table class="table table-bordered">
+			<thead class="thead-dark">
+				<tr>
+					<th class="text-center">Description</th>
+					<th class="text-center">Due date</th>
+					<th class="text-center">Status</th>
+					<th class="text-center">Value</th>
+					<th class="text-center"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Mark</td>
+					<td>Otto</td>
+					<td>@mdo</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
 	</form>
+
 	<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 </body>
