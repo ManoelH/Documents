@@ -1,5 +1,7 @@
 package com.springproject.documents.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +28,12 @@ public class DocumentController {
 	
 	@RequestMapping("/list")
 	public ModelAndView ListDocuments() {
+		List<Document> listDocuments = this.documents.findAll();
 		ModelAndView modelAndView = new ModelAndView("ListDocuments");
+		modelAndView.addObject("allDocuments", listDocuments);
 		return modelAndView;
 	}
+	
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView save(Document document) {

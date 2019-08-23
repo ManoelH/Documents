@@ -2,17 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="~{DefaultLayout}">
+	layout:decorator="~{MainLayout}">
 <head>
-<meta charset="UTF-8" />
-<title>Register here your document</title>
+	<meta charset="UTF-8" />
+	<title>Register here your document</title>
 </head>
 <section layout:fragment="content">
 	<div align="center" class="div-title">
 		<h3>Documents</h3>
 	</div>
 
+
 	<form id="main-form">
+		<div id="div-link">
+			<a class="btn btn-link" href="/documents/new">New document</a>
+		</div>
 		<table class="table table-bordered">
 			<thead class="thead-dark">
 				<tr>
@@ -24,12 +28,20 @@
 				</tr>
 			</thead>
 			<tbody>
+				<tr th:each="document : ${allDocuments}">
+					<td class="text-center" th:text="${document.description}"></td>
+					<td class="text-center" th:text="${{document.dueDate}}"></td>
+					<td class="text-center" th:text="${document.status}"></td>
+					<td class="text-center" th:text="|R$ ${{document.value}}|"></td>
+					<td class="text-center">
+						<span class="ui-icon ui-icon-info"></span>
+						<button type="button" class="btn btn-success">Paid</button>
+						<button type="button" class="btn btn-warning">Pending</button>
+						<button type="button" class="btn btn-danger">Overdue</button>
+					</td>
+				</tr>
 				<tr>
-					<td>1</td>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-					<td></td>
+					<td colspan="6" class="text-center" th:if="${#lists.isEmpty(allDocuments)}">No results</td>
 				</tr>
 			</tbody>
 		</table>
