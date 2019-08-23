@@ -1,31 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="~{DefaultLayout}">
 <head>
-<meta charset="UTF-8"/>
-	<title>Register here your document</title>
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+<meta charset="UTF-8" />
+<title>Register here your document</title>
 </head>
-<body>
-
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Home</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="new">Register</a></li>
-				<li class="nav-item"><a class="nav-link" href="list">Documents</a></li>
-			</ul>
-		</div>
-	</nav>
-
+<section layout:fragment="content">
 	<div align="center" class="div-title">
 		<h3>Documents</h3>
 	</div>
@@ -52,8 +34,5 @@
 			</tbody>
 		</table>
 	</form>
-
-	<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-</body>
+</section>
 </html>

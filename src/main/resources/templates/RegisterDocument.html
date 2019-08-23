@@ -1,66 +1,49 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{DefaultLayout}">
 <head>
-<meta charset="UTF-8"/>
-	<title>Register here your document</title>
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+<meta charset="UTF-8" />
+<title>Register here your document</title>
 </head>
-<body>
-
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Home</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="new">Register</a></li>
-				<li class="nav-item"><a class="nav-link" href="list">Documents</a></li>
-			</ul>
-		</div>
-	</nav>
-
+<section layout:fragment="content">
 	<div align="center" class="div-title">
 		<h3>Registering document</h3>
 	</div>
 
 	<form id="main-form" method="post" action="/documents">
-		<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(message)}">
-		<span th:text="${message}"></span>
+		<div class="alert alert-success" role="alert"
+			th:if="${!#strings.isEmpty(message)}">
+			<span th:text="${message}"></span>
 			<button type="button" class="close" data-dismiss="alert"
 				aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-			
+
 		<div class="form-group">
 			<label for="description">Description</label>
-			<textarea class="form-control" id="description" name="description" required>
+			<textarea class="form-control" id="description" name="description"
+				required>
 			</textarea>
 		</div>
 		<div class="form-group">
-			<label for="status">Status</label>
-			<select class="custom-select" id="status" name="status">
-				<option th:each="status : ${allStatus}" th:value="${status}" th:text="${status.status}"></option>
+			<label for="status">Status</label> <select class="custom-select"
+				id="status" name="status">
+				<option th:each="status : ${allStatus}" th:value="${status}"
+					th:text="${status.status}"></option>
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="value">Value</label>
-			<input class="form-control" type="text" id="value" name="value" required/>
+			<label for="value">Value</label> <input class="form-control"
+				type="text" id="value" name="value" required />
 		</div>
 		<div class="form-group">
-			<label for="date">Due date</label>
-			<input class="form-control" type="text" id="date" name="dueDate" required/>
+			<label for="date">Due date</label> <input class="form-control"
+				type="text" id="date" name="dueDate" required />
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
-	<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-</body>
+</section>
 </html>
