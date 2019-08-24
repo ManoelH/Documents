@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Register here your document</title>
+	<link rel="stylesheet" type="text/css" href="/css/list-documents.css">
 </head>
 <section layout:fragment="content">
 	<div align="center" class="div-title">
@@ -31,13 +32,24 @@
 				<tr th:each="document : ${allDocuments}">
 					<td class="text-center" th:text="${document.description}"></td>
 					<td class="text-center" th:text="${{document.dueDate}}"></td>
-					<td class="text-center" th:text="${document.status}"></td>
+					<td class="text-center">
+					<span class="label btn-success border-radius" th:text="paid" 
+						th:if="${#strings.toString(document.status) == 'PAID'}"></span>
+						
+					<span class="label btn-warning border-radius" th:text="pending" 
+						th:if="${#strings.toString(document.status) == 'PENDING'}"></span>
+						
+					<span class="label btn-danger border-radius" th:text="overdue" 
+						th:if="${#strings.toString(document.status) == 'OVERDUE'}"></span>
+								
+<!-- 						<span class="label border-radius" th:text="${document.status}" 
+						th:classappend="${#strings.toString(document.status) == 'PAID' ? 'btn-success' : 'btn-danger'}"></span> -->
+						
+
+					</td>
 					<td class="text-center" th:text="|R$ ${{document.value}}|"></td>
 					<td class="text-center">
-						<span class="ui-icon ui-icon-info"></span>
-						<button type="button" class="btn btn-success">Paid</button>
-						<button type="button" class="btn btn-warning">Pending</button>
-						<button type="button" class="btn btn-danger">Overdue</button>
+						
 					</td>
 				</tr>
 				<tr>
