@@ -12,14 +12,19 @@
 		<h3>Registering document</h3>
 	</div>
 
-	<form id="main-form" method="post" action="/documents">
-		<div class="alert alert-success" role="alert"
-			th:if="${!#strings.isEmpty(message)}">
+	<form id="main-form" method="post" action="/documents" th:object="${document}">
+		<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(message)}">
 			<span th:text="${message}"></span>
 			<button type="button" class="close" data-dismiss="alert"
 				aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
+		</div>
+		
+		<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+			<div th:each="detailedError : ${#fields.detailedErrors()}">
+				<span th:text="${detailedError.message}"></span>
+			</div>
 		</div>
 
 		<div class="form-group">
@@ -35,13 +40,13 @@
 					th:text="${status.status}"></option>
 			</select>
 		</div>
-		<div class="form-group">
-			<label for="value">Value</label> <input class="form-control"
-				type="text" id="value" name="value" required />
+		<div class="form-group" th:classappend="${#fields.hasErrors('value')} ? 'has-error'">
+			<label for="value">Value</label> 
+			<input class="form-control" type="text" id="value" name="value"/>
 		</div>
 		<div class="form-group">
 			<label for="date">Due date</label> <input class="form-control"
-				type="text" id="date" name="dueDate" required />
+				type="text" id="date" name="dueDate" />
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>

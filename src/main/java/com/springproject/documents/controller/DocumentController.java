@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +25,7 @@ public class DocumentController {
 	public ModelAndView newDocument() {
 		ModelAndView modelAndView = new ModelAndView("RegisterDocument");
 		modelAndView.addObject("allStatus", StatusDocument.values());
+		modelAndView.addObject(new Document());
 		return modelAndView;
 	}
 	
@@ -36,9 +39,12 @@ public class DocumentController {
 	
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView save(Document document) {
-		documents.save(document);
+	public ModelAndView save(@Validated Document document, Errors erros) {
 		ModelAndView modelAndView = new ModelAndView("RegisterDocument");
+		if(erros.hasErrors())
+			return modelAndView;
+		
+		documents.save(document);
 		modelAndView.addObject("message", "Document saved with success!");
 		return modelAndView;
 	}

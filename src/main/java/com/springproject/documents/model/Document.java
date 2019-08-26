@@ -30,7 +30,7 @@ public class Document {
 	@Enumerated(EnumType.STRING)
 	private StatusDocument status;
 	
-	@NotNull
+	@NotNull(message = "Value cannot be null")
 	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal value;
 	
