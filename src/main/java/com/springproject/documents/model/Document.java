@@ -11,8 +11,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
@@ -25,15 +32,21 @@ public class Document {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	
+	@NotBlank(message = "Description is required")
+	@Size(max = 256, message = "The description cannot be bigger than 256 characters")
 	private String description;
 	
 	@Enumerated(EnumType.STRING)
 	private StatusDocument status;
 	
-	@NotNull(message = "Value cannot be null")
+	@NotNull(message = "Value is required")
+	@Min(value = 1, message = "Value cannot be smaller than 1,00")
+	@Max(value = 999999999, message = "Value cannot be bigger than 9.999.999,99")
 	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal value;
 	
+	@NotNull(message = "Due date is required")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date dueDate;
