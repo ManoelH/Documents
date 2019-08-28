@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.springproject.documents.enums.StatusDocument;
 import com.springproject.documents.model.Document;
@@ -39,16 +40,14 @@ public class DocumentController {
 	
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView save(@Validated Document document, Errors erros) {
-		ModelAndView modelAndView = new ModelAndView("RegisterDocument");
+	public String save(@Validated Document document, Errors erros, RedirectAttributes attributes) {
 		if(erros.hasErrors())
-			return modelAndView;
-		
+			return "RegisterDocument";
+		 
+		attributes.addFlashAttribute("message", "Document saved with success!");
 		documents.save(document);
-		modelAndView.addObject("message", "Document saved with success!");
-		return modelAndView;
+		return "redirect:/documents/new";
 	}
 	
-	//H2 URL jdbc:h2:mem:testdb
 }
 

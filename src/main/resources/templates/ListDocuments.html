@@ -33,13 +33,13 @@
 					<td class="text-center" th:text="${document.description}"></td>
 					<td class="text-center" th:text="${{document.dueDate}}"></td>
 					<td class="text-center">
-					<span class="label btn-success border-radius" th:text="paid" 
+					<span class="label" th:text="paid" 
 						th:if="${#strings.toString(document.status) == 'PAID'}"></span>
 						
-					<span class="label btn-warning border-radius" th:text="pending" 
+					<span class="label" th:text="pending" 
 						th:if="${#strings.toString(document.status) == 'PENDING'}"></span>
 						
-					<span class="label btn-danger border-radius" th:text="overdue" 
+					<span class="label" th:text="overdue" 
 						th:if="${#strings.toString(document.status) == 'OVERDUE'}"></span>
 								
 <!-- 						<span class="label border-radius" th:text="${document.status}" 
@@ -49,7 +49,8 @@
 					</td>
 					<td class="text-center" th:text="|R$ ${{document.value}}|"></td>
 					<td class="text-center">
-						
+						<i class="fas fa-pencil-alt"></i>
+
 					</td>
 				</tr>
 				<tr>
