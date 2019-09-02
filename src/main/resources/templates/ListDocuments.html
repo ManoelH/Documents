@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Register here your document</title>
+	
 	<link rel="stylesheet" type="text/css" href="/css/list-documents.css">
 </head>
 <section layout:fragment="content">
@@ -49,8 +50,7 @@
 					</td>
 					<td class="text-center" th:text="|R$ ${{document.value}}|"></td>
 					<td class="text-center">
-						<i class="fas fa-pencil-alt"></i>
-
+						<a class="btn btn-link" th:href="@{/documents/{id}(id=${document.id})}">Edit</a>
 					</td>
 				</tr>
 				<tr>
