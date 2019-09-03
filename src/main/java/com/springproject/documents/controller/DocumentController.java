@@ -23,6 +23,7 @@ import com.springproject.documents.repository.Documents;
 public class DocumentController {
 
 	private static final String REGISTER_DOCUMENT_VIEW = "RegisterDocument";
+	private static final String LIST_DOCUMENTS_VIEW = "ListDocuments";
 	
 	@Autowired
 	private Documents documents;
@@ -38,7 +39,7 @@ public class DocumentController {
 	@RequestMapping("/list")
 	public ModelAndView ListDocuments() {
 		List<Document> listDocuments = this.documents.findAll();
-		ModelAndView modelAndView = new ModelAndView("ListDocuments");
+		ModelAndView modelAndView = new ModelAndView(LIST_DOCUMENTS_VIEW);
 		modelAndView.addObject("allDocuments", listDocuments);
 		return modelAndView;
 	}
@@ -59,6 +60,12 @@ public class DocumentController {
 		ModelAndView modelAndView = new ModelAndView(REGISTER_DOCUMENT_VIEW);
 		modelAndView.addObject(document);
 		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public String delete(@PathVariable("id") Long id) {
+		documents.deleteById(id);
+		return "redirect:/documents/list";
 	}
 	
 }
