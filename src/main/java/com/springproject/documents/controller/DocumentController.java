@@ -63,7 +63,8 @@ public class DocumentController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public String delete(@PathVariable("id") Long id) {
+	public String delete(@PathVariable("id") Long id, RedirectAttributes attributes) {
+		attributes.addFlashAttribute("message", "Document deleted with success!");
 		documents.deleteById(id);
 		return "redirect:/documents/list";
 	}

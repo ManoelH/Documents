@@ -15,6 +15,7 @@
 
 
 	<form id="main-form">
+		<div layout:insert="MessageSuccess"></div>
 		<div id="div-link">
 			<a class="btn btn-link" href="/documents/new">New document</a>
 		</div>
@@ -49,8 +50,9 @@
 					</td>
 					<td class="text-center" th:text="|R$ ${{document.value}}|"></td>
 					<td class="text-center">
-						<a class="btn btn-link" th:href="@{/documents/{id}(id=${document.id})}">Edit</a>
-						<button type="button" th:field="*{id}" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Delete</button>
+						<a class="btn btn-link" th:href="@{/documents/{id}(id=${document.id})}" title="Edit document" rel="tooltip" data-placement="top">Edit</a>
+						<button type="button" th:field="*{id}" class="btn btn-primary" data-toggle="modal" data-target="#modal-delete"
+						 th:attr="data-id = ${document.id}, data-description = ${document.description}" title="Delete document" rel="tooltip" data-placement="top">Delete</button>
 					</td>
 				</tr>
 				<tr>

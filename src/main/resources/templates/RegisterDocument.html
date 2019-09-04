@@ -13,8 +13,9 @@
 	</div>
 
 	<form id="main-form" method="post" action="/documents" th:object="${document}">
-		<div layout:insert="Messages">
-		</div>
+		<div layout:insert="MessageSuccess"></div>
+		<div layout:insert="MessageError"></div>
+		
 		<input type="hidden" th:field="*{id}">
 
 		<div class="form-group">

@@ -3,12 +3,11 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<script type="text/javascript" src="/js/document.js"></script>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+<div class="modal fade" id="modal-delete" tabindex="-1" role="dialog"
 	aria-labelledby="exampleModalLabel" aria-hidden="true" >
 	<div class="modal-dialog" role="document">
-		<form action="/documents/9" method="post">
-		<input type="hidden" name="_method" value="DELETE">
+		<form action="/documents/" method="post">
+		<input type="hidden" name="_method" value="delete">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">Confirm delete</h5>
@@ -18,7 +17,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<label>Do you really want to delete this document?</label>
+					<span></span>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
