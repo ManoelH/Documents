@@ -47,7 +47,7 @@ public class Document {
 	private BigDecimal value;
 	
 	@NotNull(message = "Due date is required")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date dueDate;
 	

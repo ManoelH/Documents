@@ -50,9 +50,9 @@
 					</td>
 					<td class="text-center" th:text="|R$ ${{document.value}}|"></td>
 					<td class="text-center">
-						<a class="btn btn-link" th:href="@{/documents/{id}(id=${document.id})}" title="Edit document" rel="tooltip" data-placement="top">Edit</a>
+						<a class="btn btn-link" th:href="@{/documents/{id}(id=${document.id})}" title="Edit document">Edit</a>
 						<button type="button" th:field="*{id}" class="btn btn-primary" data-toggle="modal" data-target="#modal-delete"
-						 th:attr="data-id = ${document.id}, data-description = ${document.description}" title="Delete document" rel="tooltip" data-placement="top">Delete</button>
+						 th:attr="data-id = ${document.id}, data-description = ${document.description}" title="Delete document">Delete</button>
 					</td>
 				</tr>
 				<tr>

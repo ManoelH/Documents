@@ -1,10 +1,9 @@
 package com.springproject.documents.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -14,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mysql.cj.exceptions.DataTruncationException;
+import com.mysql.cj.jdbc.exceptions.MysqlDataTruncation;
 import com.springproject.documents.enums.StatusDocument;
 import com.springproject.documents.model.Document;
 import com.springproject.documents.repository.Documents;
@@ -46,13 +47,13 @@ public class DocumentController {
 	
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(@Validated Document document, Errors erros, RedirectAttributes attributes) {
+	public String save(@Validated Document document, Errors erros, RedirectAttributes attributes) throws MysqlDataTruncation {
 		if(erros.hasErrors())
 			return REGISTER_DOCUMENT_VIEW;
-		 
 		attributes.addFlashAttribute("message", "Document saved with success!");
 		documents.save(document);
-		return "redirect:/documents/new";
+		return "redirect:/documents/new"; 
+		
 	}
 	
 	@RequestMapping("/{id}")
