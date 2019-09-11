@@ -32,7 +32,8 @@
 		</div>
 		<div class="form-group" th:classappend="${#fields.hasErrors('value')} ? 'has-error'">
 			<label for="value">Value</label> 
-			<input class="form-control" type="text" id="value" th:field="*{value}"/>
+			<input class="form-control js-decimal" type="text" id="value" th:field="*{value}"/>
+			<script type="text/javascript">$('#value').maskMoney({thousands:'.', decimal:',', allowZero: true});</script>
 		</div>
 
 		<div>
@@ -49,11 +50,7 @@
 	</form>
 	
 	<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-	<script>
-		$('#date').datepicker({
-	    	format: "dd/mm/yyyy"
-		});
-	</script>
+	<script type="text/javascript" src="/js/jquery.maskMoney.min.js"></script>
 	<script type="text/javascript" src="/js/bootstrap-datepicker.min.js"></script>
 </section>
 </html>

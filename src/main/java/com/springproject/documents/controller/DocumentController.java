@@ -3,7 +3,6 @@ package com.springproject.documents.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -13,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.mysql.cj.exceptions.DataTruncationException;
 import com.mysql.cj.jdbc.exceptions.MysqlDataTruncation;
 import com.springproject.documents.enums.StatusDocument;
 import com.springproject.documents.model.Document;
 import com.springproject.documents.repository.Documents;
+import com.springproject.documents.service.DocumentService;
 
 @Controller
 @RequestMapping("/documents")
@@ -28,6 +27,8 @@ public class DocumentController {
 	
 	@Autowired
 	private Documents documents;
+	@Autowired
+	private DocumentService documentService;
 	
 	@RequestMapping("/new")
 	public ModelAndView newDocument() {
@@ -51,7 +52,7 @@ public class DocumentController {
 		if(erros.hasErrors())
 			return REGISTER_DOCUMENT_VIEW;
 		attributes.addFlashAttribute("message", "Document saved with success!");
-		documents.save(document);
+		documentService.saveDocument(document);
 		return "redirect:/documents/new"; 
 		
 	}
@@ -66,9 +67,18 @@ public class DocumentController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable("id") Long id, RedirectAttributes attributes) {
 		attributes.addFlashAttribute("message", "Document deleted with success!");
-		documents.deleteById(id);
+		documentService.deleteDocumentById(id);
 		return "redirect:/documents/list";
 	}
-	
+
+	/*
+	 * @RequestMapping(method = RequestMethod.POST) public String save(@Validated
+	 * Document document, Errors erros, RedirectAttributes attributes) throws
+	 * MysqlDataTruncation { if(erros.hasErrors()) return REGISTER_DOCUMENT_VIEW;
+	 * attributes.addFlashAttribute("message", "Document got with success!");
+	 * documentService.saveDocument(document); return "redirect:/documents/new";
+	 * 
+	 * }
+	 */
 }
 

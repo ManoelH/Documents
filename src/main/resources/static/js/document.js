@@ -13,3 +13,4 @@ $('#modal-delete').on('show.bs.modal', function (event) {
   modal.find('.modal-body span').html('Do you really want to delete <strong>'+description+'</strong>?')
   		  
 })
+

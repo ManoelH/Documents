@@ -26,7 +26,7 @@
 					<th class="text-center">Due date</th>
 					<th class="text-center">Status</th>
 					<th class="text-center">Value</th>
-					<th class="text-center"></th>
+					<th class="text-center">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -53,6 +53,7 @@
 						<a class="btn btn-link" th:href="@{/documents/{id}(id=${document.id})}" title="Edit document">Edit</a>
 						<button type="button" th:field="*{id}" class="btn btn-primary" data-toggle="modal" data-target="#modal-delete"
 						 th:attr="data-id = ${document.id}, data-description = ${document.description}" title="Delete document">Delete</button>
+						<button type="button" class="btn btn-success" title="Get document">Get</button> 
 					</td>
 				</tr>
 				<tr>
