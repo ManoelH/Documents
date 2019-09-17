@@ -53,7 +53,9 @@
 						<a class="btn btn-link" th:href="@{/documents/{id}(id=${document.id})}" title="Edit document">Edit</a>
 						<button type="button" th:field="*{id}" class="btn btn-primary" data-toggle="modal" data-target="#modal-delete"
 						 th:attr="data-id = ${document.id}, data-description = ${document.description}" title="Delete document">Delete</button>
-						<button type="button" class="btn btn-success" title="Get document">Get</button> 
+						 
+						<a class="btn btn-success js-update-status" title="To receive document" 
+						th:if="${#strings.toString(document.status) == 'PENDING'}" th:href="@{/documents/{id}/receive(id=${document.id})}">To receive</a> 
 					</td>
 				</tr>
 				<tr>
@@ -64,6 +66,6 @@
 	</form>
 	
 	<div layout:insert="ConfirmModal"></div>
-	
+	<script src="/js/documents.js"></script>
 </section>
 </html>

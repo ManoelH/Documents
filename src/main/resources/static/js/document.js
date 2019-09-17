@@ -14,3 +14,16 @@ $('#modal-delete').on('show.bs.modal', function (event) {
   		  
 })
 
+$(function() {
+	$('.js-update-status').on('click', function (event) {
+		event.preventDefault()
+		var buttonToReceive = $(event.currentTarget)
+		var href = buttonToReceive.attr('href')
+		alert('URL received: '+ href)
+	})
+})
+
+
+
+		
+
