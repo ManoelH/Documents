@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -70,15 +71,12 @@ public class DocumentController {
 		documentService.deleteDocumentById(id);
 		return "redirect:/documents/list";
 	}
+	
+	@RequestMapping(value = "/{id}/receive", method = RequestMethod.PUT)
+	public @ResponseBody String ReceiveDocument(@PathVariable Long id) {
+		return documentService.toReceiveDocument(id);
+	}
 
-	/*
-	 * @RequestMapping(method = RequestMethod.POST) public String save(@Validated
-	 * Document document, Errors erros, RedirectAttributes attributes) throws
-	 * MysqlDataTruncation { if(erros.hasErrors()) return REGISTER_DOCUMENT_VIEW;
-	 * attributes.addFlashAttribute("message", "Document got with success!");
-	 * documentService.saveDocument(document); return "redirect:/documents/new";
-	 * 
-	 * }
-	 */
+	
 }
 

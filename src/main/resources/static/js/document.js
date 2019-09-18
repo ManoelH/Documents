@@ -18,8 +18,23 @@ $(function() {
 	$('.js-update-status').on('click', function (event) {
 		event.preventDefault()
 		var buttonToReceive = $(event.currentTarget)
-		var href = buttonToReceive.attr('href')
-		alert('URL received: '+ href)
+		var urlReceive = buttonToReceive.attr('href')
+		
+		var response = $.ajax({
+			url: urlReceive,
+			type: "PUT"
+		});
+		
+		response.done(function(e) {
+			var idDocument = buttonToReceive.data("id")
+			$('[data-role=' + idDocument + ']').html('<span class="label">'+ e +'</span>')
+			buttonToReceive.hide()
+		})
+		
+		response.fail(function(e) {
+			console.log(e)
+			alert("One error happended")
+		})
 	})
 })
 

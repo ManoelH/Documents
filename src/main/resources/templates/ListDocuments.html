@@ -33,28 +33,26 @@
 				<tr th:each="document : ${allDocuments}">
 					<td class="text-center" th:text="${document.description}"></td>
 					<td class="text-center" th:text="${{document.dueDate}}"></td>
-					<td class="text-center">
-					<span class="label" th:text="paid" 
-						th:if="${#strings.toString(document.status) == 'PAID'}"></span>
-						
-					<span class="label" th:text="pending" 
-						th:if="${#strings.toString(document.status) == 'PENDING'}"></span>
-						
-					<span class="label" th:text="overdue" 
-						th:if="${#strings.toString(document.status) == 'OVERDUE'}"></span>
-								
-<!-- 						<span class="label border-radius" th:text="${document.status}" 
-						th:classappend="${#strings.toString(document.status) == 'PAID' ? 'btn-success' : 'btn-danger'}"></span> -->
-						
-
+					<td class="text-center" th:attr="data-role=${document.id}">
+						<span class="label" th:text="Paid"
+							th:if="${#strings.toString(document.status) == 'PAID'}">
+						</span> 
+						<span class="label" th:text="Pending"
+							th:if="${#strings.toString(document.status) == 'PENDING'}">
+						</span>
+						<span class="label" th:text="Overdue"
+							th:if="${#strings.toString(document.status) == 'OVERDUE'}">
+						</span>
 					</td>
 					<td class="text-center" th:text="|R$ ${{document.value}}|"></td>
 					<td class="text-center">
 						<a class="btn btn-link" th:href="@{/documents/{id}(id=${document.id})}" title="Edit document">Edit</a>
+						
 						<button type="button" th:field="*{id}" class="btn btn-primary" data-toggle="modal" data-target="#modal-delete"
 						 th:attr="data-id = ${document.id}, data-description = ${document.description}" title="Delete document">Delete</button>
 						 
 						<a class="btn btn-success js-update-status" title="To receive document" 
+						th:attr="data-id = ${document.id}"
 						th:if="${#strings.toString(document.status) == 'PENDING'}" th:href="@{/documents/{id}/receive(id=${document.id})}">To receive</a> 
 					</td>
 				</tr>
@@ -66,6 +64,6 @@
 	</form>
 	
 	<div layout:insert="ConfirmModal"></div>
-	<script src="/js/documents.js"></script>
+	<script src="/js/document.js"></script>
 </section>
 </html>

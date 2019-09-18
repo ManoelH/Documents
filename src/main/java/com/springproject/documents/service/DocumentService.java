@@ -1,5 +1,7 @@
 package com.springproject.documents.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +24,11 @@ public class DocumentService {
 		documents.deleteById(id);
 	}
 	
-	public void toGetDocument(Document document) {
+	public String toReceiveDocument(Long id) {
+		Optional<Document> documentObjeto = documents.findById(id);
+		Document document = documentObjeto.get();
 		document.setStatus(StatusDocument.PAID);
 		documents.save(document);
+		return StatusDocument.PAID.getStatus();
 	}
 }
